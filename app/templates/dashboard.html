@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div style="padding: 20px; background-color: white; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+    <h2>User Dashboard</h2>
+    <p>Welcome to your private dashboard, {{ current_user.username }}!</p>
+    <p>This page is protected by the <strong>@login_required</strong> decorator. Only authenticated users can see this.
+    </p>
+    <p>Your current role is: <span style="background-color: #eee; padding: 2px 6px; border-radius: 4px;">{{current_user.role }}</span></p>
+</div>
+{% endblock %}

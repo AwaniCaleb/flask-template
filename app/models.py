@@ -10,7 +10,9 @@ class User(UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(64), index=True, unique=True, nullable=False)
     email = db.Column(db.String(120), index=True, unique=True, nullable=False)
-    # ---> NEW: Column for the hashed password
+
+    role = db.Column(db.String(20), nullable=False, default='user')
+
     password_hash = db.Column(db.String(256))
     created_at = db.Column(db.DateTime, default=lambda: datetime.now(timezone.utc))
 

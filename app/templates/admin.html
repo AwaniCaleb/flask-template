@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div style="padding: 20px; background-color: #fff9e6; border-left: 5px solid #ffcc00; border-radius: 8px;">
+    <h2>Admin Control Panel</h2>
+    <p>Welcome, Administrator {{ current_user.username }}.</p>
+    <p>This page is protected by the custom <strong>@admin_required</strong> decorator. Regular users will receive a 403 Forbidden error if they try to access this URL.</p>
+</div>
+{% endblock %}

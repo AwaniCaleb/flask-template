@@ -12,16 +12,21 @@
 <body>
     <header>
         <nav style="display: flex; justify-content: space-between; align-items: center; padding: 0 20px;">
-            <h1><a href="{{ url_for('main.index') }}" style="color: white; text-decoration: none;">Flask Template</a>
-            </h1>
-
-            <div style="display: flex; gap: 15px;">
+            <h1><a href="{{ url_for('main.index') }}" style="color: white; text-decoration: none;">Flask Template</a></h1>
+            
+            <div style="display: flex; gap: 15px; align-items: center;">
                 {% if current_user.is_authenticated %}
-                <span style="align-self: center;">Hello, {{ current_user.username }}!</span>
-                <a href="{{ url_for('auth.logout') }}" style="color: #ff9999; text-decoration: none;">Logout</a>
+                    <a href="{{ url_for('main.dashboard') }}" style="color: #66b3ff; text-decoration: none;">Dashboard</a>
+                    
+                    {% if current_user.role == 'admin' %}
+                        <a href="{{ url_for('main.admin_panel') }}" style="color: #ffcc00; text-decoration: none; font-weight: bold;">Admin Panel</a>
+                    {% endif %}
+                    
+                    <span style="color: white; margin-left: 10px;">Hello, {{ current_user.username }}!</span>
+                    <a href="{{ url_for('auth.logout') }}" style="color: #ff9999; text-decoration: none;">Logout</a>
                 {% else %}
-                <a href="{{ url_for('auth.login') }}" style="color: white; text-decoration: none;">Login</a>
-                <a href="{{ url_for('auth.register') }}" style="color: white; text-decoration: none;">Register</a>
+                    <a href="{{ url_for('auth.login') }}" style="color: white; text-decoration: none;">Login</a>
+                    <a href="{{ url_for('auth.register') }}" style="color: white; text-decoration: none;">Register</a>
                 {% endif %}
             </div>
         </nav>
