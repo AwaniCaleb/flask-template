@@ -15,15 +15,19 @@ def create_app(config_name="dev"):
     db.init_app(app)
     migrate.init_app(app, db)
 
-    # Import and register error handlers
-    from app.errors import errors_bp
-    app.register_blueprint(errors_bp)
-
     # Import models so Flask-Migrate knows about them
     from app import models
 
     # Import and register Blueprints
     from app.main import main_bp
+
+    # Import and register error handlers
+    from app.errors import errors_bp
+    app.register_blueprint(errors_bp)
+
+    # Import and register the authentication Blueprint
+    from app.auth import auth_bp
+    app.register_blueprint(auth_bp, url_prefix='/auth')
 
     app.register_blueprint(main_bp)
 
