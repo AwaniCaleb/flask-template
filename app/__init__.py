@@ -15,6 +15,10 @@ def create_app(config_name="dev"):
     db.init_app(app)
     migrate.init_app(app, db)
 
+    # Import and register error handlers
+    from app.errors import errors_bp
+    app.register_blueprint(errors_bp)
+
     # Import models so Flask-Migrate knows about them
     from app import models
 
